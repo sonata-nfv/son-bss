@@ -1,6 +1,6 @@
-FROM sonata-yo-gen
+FROM registry.sonata-nfv.eu:5000/son-yo-gen
 
-MAINTAINER Xose Ramon Sousa <xrsousa@optaresolutions.com>
+MAINTAINER Optare [fporto,srodriguez,jcunha]@optaresolutions.com
 USER yeoman
 RUN mkdir /usr/local/yeoman/bss
 RUN chmod 775 /usr/local/yeoman/
