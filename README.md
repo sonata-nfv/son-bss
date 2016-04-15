@@ -18,6 +18,7 @@ Run Docker container
 ```
 docker run --name sonata-bss -it -p 9000:9000 -p 1337:1337 sonata-yo-gen-bss sudo grunt serve:development
 ```
+
 ### Technologies
 
 * [Grunt] (http://gruntjs.com/) - JavaScript Task Runner
