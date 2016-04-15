@@ -7,16 +7,16 @@ Very simple gui that allows customers to retrieve and inspect Network Services a
 ### Docker support
 Build Docker container image 
 ```
-docker rm -f sonata-bss
+docker rm -f son-bss
 
-docker build -t sonata-yo-base .
-docker build -t sonata-yo-gen generator/
-docker build --no-cache -t sonata-yo-gen-bss application/ 
+docker build -t son-yo-base .
+docker build -t son-yo-gen generator/
+docker build --no-cache -t son-yo-gen-bss application/ 
 ```
 
 Run Docker container
 ```
-docker run --name sonata-bss -it -p 9000:9000 -p 1337:1337 sonata-yo-gen-bss sudo grunt serve:development
+docker run --name son-bss -i -p 9000:9000 -p 1337:1337 son-yo-gen-bss sudo grunt serve:development &
 ```
 ### Technologies
 
