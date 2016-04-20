@@ -2,6 +2,6 @@
 
  angular.module('config', [])
 
-.constant('ENV', {name:'development',apiEndpoint:'http://localhost:1337'})
+.constant('ENV', {name:'development',apiEndpoint:'http://sp.int.sonata-nfv.eu:32001'})
 
 ;
