@@ -17,7 +17,7 @@ module.exports = function(grunt) {
 		    constants: {
 		      ENV: {
 			name: 'development',
-			apiEndpoint: 'http://localhost:1337'
+			apiEndpoint: 'http://sp.int.sonata-nfv.eu:32001'
 		      }
 		    }
 		  },
@@ -38,13 +38,34 @@ module.exports = function(grunt) {
 				port: 1337,
 				base: 'app'
 			}
+		},
+		karma: {  
+		  unit: {
+			options: {
+			  frameworks: ['jasmine'],
+			  singleRun: true,
+			  logLevel: 'DEBUG',
+			  browsers: ['PhantomJS'],
+			  files: [
+			  'app/vendor/angular/angular.js',
+			  'app/vendor/angular-mocks/angular-mocks.js',
+			  'app/app.js',
+			  'app/modules/**/*.js',
+				'app/test/NSD/nsdTest.js'				
+			  ]
+			}
+		  }
 		}
 	});
-
+    grunt.loadNpmTasks('grunt-karma');
 	grunt.loadNpmTasks('grunt-connect');
 	grunt.loadNpmTasks('grunt-ng-constant');
 	
 	grunt.registerTask('default', 'connect:dist');
+	grunt.registerTask('test', [
+  'karma'
+]);;
+  
 	grunt.registerTask('serve', function (target) {
 
 	if (target === 'development') {
