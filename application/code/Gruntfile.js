@@ -39,21 +39,21 @@ module.exports = function(grunt) {
 		    constants: {
 		      ENV: {
 			name: 'production',
-			apiEndpoint: 'http://prod.server:XXXX'
+			apiEndpoint: 'http://production.server:XXXX'
 		      }
 		    }
 		  }
 		},
 		connect: {
-			production: {
+			dist: {
 				port: 1337,
 				base: 'app'
 			},
-			integration: {
+			int: {
 				port: 1337,
 				base: 'app'
 			},
-			development: {
+			prod: {
 				port: 1337,
 				base: 'app'
 			}
@@ -89,19 +89,16 @@ module.exports = function(grunt) {
 
 	if (target === 'development') {
     
-	return grunt.task.run(['ngconstant:development','connect:development']);
+	return grunt.task.run(['ngconstant:development','connect:dist']);
   }
-  
-  if (target === 'production') {
-    
-	return grunt.task.run(['ngconstant:production','connect:dist']);
-  }
-  
   if (target === 'integration') {
     
-	return grunt.task.run(['ngconstant:integration','connect:integration']);
+	return grunt.task.run(['ngconstant:integration','connect:int']);
   }
+  	if (target === 'production') {
   
+	return grunt.task.run(['ngconstant:production','connect:prod']);
+  }
   
 });
 
