@@ -17,7 +17,18 @@ module.exports = function(grunt) {
 		    constants: {
 		      ENV: {
 			name: 'development',
-			apiEndpoint: 'http://localhost:1337'
+			apiEndpoint: 'http://localhost:25001'
+		      }
+		    }
+		  },
+		  integration: {
+		    options: {
+		      dest: 'app/config/config.js'
+		    },
+		    constants: {
+		      ENV: {
+			name: 'development',
+			apiEndpoint: 'http://localhost:25002'
 		      }
 		    }
 		  },
