@@ -53,7 +53,6 @@ module.exports = function(grunt) {
 				port: 1337,
 				base: 'app'
 			},
-			,
 			development: {
 				port: 1337,
 				base: 'app'
