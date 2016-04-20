@@ -21,6 +21,17 @@ module.exports = function(grunt) {
 		      }
 		    }
 		  },
+		  integration: {
+		    options: {
+		      dest: 'app/config/config.js'
+		    },
+		    constants: {
+		      ENV: {
+			name: 'integration',
+			apiEndpoint: 'http://sp.int.sonata-nfv.eu:42001'
+		      }
+		    }
+		  },
 		  production: {
 		    options: {
 		      dest: 'app/config/config.js'
@@ -34,7 +45,16 @@ module.exports = function(grunt) {
 		  }
 		},
 		connect: {
-			dist: {
+			production: {
+				port: 1337,
+				base: 'app'
+			},
+			integration: {
+				port: 1337,
+				base: 'app'
+			},
+			,
+			development: {
 				port: 1337,
 				base: 'app'
 			}
@@ -70,7 +90,17 @@ module.exports = function(grunt) {
 
 	if (target === 'development') {
     
-	return grunt.task.run(['ngconstant:development','connect:dist']);
+	return grunt.task.run(['ngconstant:development','connect:development']);
+  }
+  
+  if (target === 'production') {
+    
+	return grunt.task.run(['ngconstant:production','connect:dist']);
+  }
+  
+  if (target === 'integration') {
+    
+	return grunt.task.run(['ngconstant:integration','connect:integration']);
   }
   
 });
