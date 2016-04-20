@@ -5,11 +5,11 @@
 angular.module('NSD')
     .factory('NSDServices',["$http","$q",function ($http,$q) {
         return {
-            retrieveNSDs:function(ENV){
-
+		retrieveNSDs:function(ENV){
                 var defer=$q.defer();
-		$http.get(ENV.apiEndPoint||"/test/NSD/json_example.json")
-                    .success(function(result){defer.resolve(result)})
+		$http.get(ENV.apiEndpoint+"/services/")
+                    .success(function(result){
+					defer.resolve(result)})
                     .error(function(error){defer.reject(error)});
                 return defer.promise;
             },
@@ -17,19 +17,19 @@ angular.module('NSD')
             instantiateNSD:function(id,ENV){
 
                 var defer=$q.defer();
-                $http.post(ENV.apiEndPoint||"/instances/"+id,id)
+                $http.post(ENV.apiEndpoint+"/requests",{service_id:id})
                     .success(function(result){defer.resolve(result)})
-                    .error(function(error){defer.reject(error)});
+                    .error(function(error){console.log(result);defer.reject(error)});
 
                 return defer.promise;
-            },
-            retrieveNSDById:function(id){
+            }/*,
+            retrieveNSDById:function(id,ENV){
 
                 var defer=$q.defer();
-                $http.get("nSD/"+id)
+                $http.get(ENV.apiEndpoint||"/services/")
                     .success(function(result){defer.resolve(result)})
                     .error(function(error){defer.reject(error)});
                 return defer.promise;
-            }
+            }*/
         }
     }]);
