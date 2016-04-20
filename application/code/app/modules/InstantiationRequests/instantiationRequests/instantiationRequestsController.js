@@ -3,14 +3,14 @@
  */
 
 angular.module('InstantiationRequests')
-    .controller('InstantiationRequestsCtrl', ["$scope", "$rootScope", "InstantiationRequestsServices", function ($scope, $rootScope,InstantiationRequestsServices) {
+    .controller('InstantiationRequestsCtrl', ["$scope", "$rootScope", "InstantiationRequestsServices","ENV", function ($scope, $rootScope,InstantiationRequestsServices,ENV) {
 
         $scope.currentInstantiationRequests= {};
         $scope.InstantiationRequestsFields=[{"type":"textarea","key":"id","templateOptions":{"label":"Id","required":true}},{"type":"textarea","key":"user","templateOptions":{"label":"User","required":true}},{"type":"textarea","key":"descriptorId","templateOptions":{"label":"DescriptorId","required":true}},{"type":"textarea","key":"instanceId","templateOptions":{"label":"InstanceId","required":true}}];
 
         // retrieve InstantiationRequests to server
         $scope.retrieveInstantiationRequestss = (function(){
-            InstantiationRequestsServices.retrieveInstantiationRequestss()
+            InstantiationRequestsServices.retrieveInstantiationRequestss(ENV)
                 .then(function(result){
                     $rootScope.InstantiationRequestss = result;
                     },function(error){

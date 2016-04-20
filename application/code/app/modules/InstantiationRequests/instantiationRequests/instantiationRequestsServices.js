@@ -5,10 +5,10 @@
 angular.module('InstantiationRequests')
     .factory('InstantiationRequestsServices',["$http","$q",function ($http,$q) {
         return {
-            retrieveInstantiationRequestss:function(){
+            retrieveInstantiationRequestss:function(ENV){
 
                 var defer=$q.defer();
-                $http.get("InstantiationRequests")
+                $http.get(ENV.apiEndpoint+"/requests")
                     .success(function(result){defer.resolve(result)})
                     .error(function(error){defer.reject(error)});
                 return defer.promise;
@@ -18,7 +18,7 @@ angular.module('InstantiationRequests')
                 var defer=$q.defer();
                 $http.post("InstantiationRequests",InstantiationRequestsObj)
                     .success(function(result){defer.resolve(result)})
-                    .error(function(error){defer.reject(error)});
+                    .error(function(error){defer.reject(error)});x
                 return defer.promise;
             },
             updateInstantiationRequests:function(InstantiationRequestsObj){
