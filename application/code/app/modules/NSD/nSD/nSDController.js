@@ -48,7 +48,7 @@ angular.module('NSD')
 
         
         $scope.instantiateNSD = function(){
-				console.log("$scope.currentNSD.uuid: "+$scope.currentNSD.uuid);
+				//console.log("$scope.currentNSD.uuid: "+$scope.currentNSD.uuid);
                 NSDServices.instantiateNSD($scope.currentNSD.uuid,ENV)
                 .then(function(result){
                     $('#instantiateNSD.modal').modal('hide');

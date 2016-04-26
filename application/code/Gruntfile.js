@@ -1,12 +1,12 @@
 var fmock =  function (req, res, next) {		
-							console.log("Mock: receiving "+req.method+" request");
+							//console.log("Mock: receiving "+req.method+" request");
 							if (req.url.indexOf('/mock') === 0) {
 						 
 							  // everything after /mock is the path that we need to mock
 							  var path = req.url.substring(5);
 							  var body = '';
 							  if (req.method === 'OPTIONS') {		
-							    console.log("OPTIONS");
+							    //console.log("OPTIONS");
 								
 								res.setHeader('Access-Control-Allow-Origin', '*');
 								res.setHeader('Access-Control-Allow-Headers', '"Origin, X-Requested-With, Content-Type, Accept');								  
@@ -16,7 +16,7 @@ var fmock =  function (req, res, next) {
 								res.end(); 
 							  } else {
 									if (req.method === 'POST') {		
-										console.log("POST");
+										//console.log("POST");
 										body += '{ "requestId": "12345" }';
 										res.setHeader('Access-Control-Allow-Origin', '*');
 										res.setHeader('Access-Control-Allow-Headers', '"Origin, X-Requested-With, Content-Type, Accept');								  
@@ -27,7 +27,7 @@ var fmock =  function (req, res, next) {
 										res.end(); 
 								  } else {
 									  if (req.method === 'GET') {
-										  console.log("GET");
+										  //console.log("GET");
 										  if (path.indexOf('/services') === 0) {
 											  //body response
 											  body += '[';
@@ -66,7 +66,7 @@ var fmock =  function (req, res, next) {
 											  }
 										  }
 									  } else {
-											console.log("OTHERS...");
+											//console.log("OTHERS...");
 											next();
 										}  
 								}	

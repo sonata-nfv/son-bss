@@ -7,7 +7,7 @@ describe('SonataBSS', function() {
     //beforeEach(module('ENV'));
     beforeEach(inject(function($rootScope, $controller) {
       _rootScope_=$rootScope;
-      console.log(_rootScope_);
+      //console.log(_rootScope_);
       $scope = $rootScope.$new();
       $controller('NSDCtrl', {$scope: $scope});
 
@@ -15,9 +15,9 @@ describe('SonataBSS', function() {
     }));
 
     it('Retrieve NSDs', function() {
-      console.log($scope);
+      //console.log($scope);
       $scope.retrieveNSDs();
-      console.log(_rootScope_.nSDs);
+      //console.log(_rootScope_.nSDs);
 
        
       expect(true).toBe(true);
