@@ -4,6 +4,13 @@
   "devDependencies": {
     "grunt": "~0.4.2",
     "grunt-connect": "^0.2.0",
-    "grunt-ng-constant": "^2.0.1"
+    "grunt-contrib-connect": "^1.0.1",
+    "grunt-contrib-watch": "^1.0.0",
+    "grunt-karma": "latest",
+    "grunt-ng-constant": "^2.0.1",
+    "jasmine-core": "^2.4.1",
+    "karma": "^0.13.22",
+    "karma-jasmine": "^0.3.8",
+    "karma-phantomjs-launcher": "^1.0.0"
   }
 }

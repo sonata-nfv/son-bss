@@ -27,8 +27,8 @@ angular.module("SonataBSS", ["angular-json-tree","ui.router","formly","formlyBoo
                     controller: "NSDCtrl"
                     })
                 .state("InstantiationRequests",{
-                    url: "/InstantiationRequestss",
-                    templateUrl: "modules/InstantiationRequests/instantiationRequests/views/instantiationRequestss.html",
+                    url: "/InstantiationRequests",
+                    templateUrl: "modules/InstantiationRequests/instantiationRequests/views/instantiationRequests.html",
                     controller: "InstantiationRequestsCtrl"
                     })
 		

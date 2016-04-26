@@ -24,54 +24,22 @@
                 There are no NSDs here!
             </div>
 		
-		
 	    <table ng-hide="!(nSDs  | searchObject: nSDsSearch ).length"
                    class="table table-striped table-hover table-bordered dataTable">
-                <thead>
-                <tr role="row">
-                    
-                    <th role="columnheader" ng-click="sort='id';reverse=!reverse">
-                        Id
-                    </th>
-                    
-                    <th role="columnheader" ng-click="sort='name';reverse=!reverse">
-                        Name
-                    </th>
-                    
-                    <th role="columnheader" ng-click="sort='vendor';reverse=!reverse">
-                        Vendor
-                    </th>
-                    
-                    <th role="columnheader" ng-click="sort='version';reverse=!reverse">
-                        Version
-                    </th>
-                    
-
-                    <th role="columnheader" class="actionTH">Actions</th>
-                </tr>
-                </thead>
-                <tbody role="alert" aria-live="polite" aria-relevant="all" right-menu id="rightContextMenu">
-                <tr ng-repeat="nSD in nSDs | searchObject:nSDsSearch | orderObjectBy:sort:reverse"
-                    ng-animate="''" ng-mouseover="showPopover(nSD)" ng-mouseleave="hidePopover()">
-                    
-		    <td>
-                        {{ nSD['id'] }}
-                    </td>
-                    
-                    <td>
-                        {{ nSD['name'] }}
-                    </td>
-                    
-                    <td>
-                        {{ nSD['vendor'] }}
-                    </td>
-                    
-                    <td>
-                        {{ nSD['version'] }}
-                    </td>
-                    
-
-                    <td>
+				<thead>
+				  <tr>
+					<th ng-repeat="(header, value) in nSDs[0]">
+					  {{header}}
+					</th>
+					<th role="columnheader" class="actionTH">Actions</th>
+				  </tr>
+				</thead>
+				<tbody>
+				  <tr ng-repeat="nSD in nSDs">
+					<td ng-repeat="cell in nSD">
+					  {{cell}}
+					</td>
+					<td>
                         <button class="btn btn-success btn-xs" tooltip-init
                                 data-toggle="tooltip" data-placement="top" title="Show details"
                                 ng-click="openUpdateNSD(nSD)">
@@ -83,8 +51,8 @@
                             <i class="glyphicon glyphicon-play"></i>
                         </button>
                     </td>
-                </tr>
-                </tbody>
+				  </tr>
+				</tbody>				   
             </table>
 	    
 	    

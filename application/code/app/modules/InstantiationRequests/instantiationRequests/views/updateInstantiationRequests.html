@@ -3,26 +3,9 @@
     <div class="modal-dialog mediumModal">
         <div class="modal-content">
             <div class="modal-header">
-                <h4 class="modal-title kpiCustomHeading">Update InstantiationRequests</h4>
+                <h4 class="modal-title kpiCustomHeading">Instantiation Requests Details</h4>
             </div>
-            <form name="updateInstantiationRequestsForm">
-                <div class="modal-body">
-                    <div class='row'>
-                        <div class='col-xs-12'>
-                            <formly-form model='currentInstantiationRequests' fields='InstantiationRequestsFields'></formly-form>
-                        </div>
-                    </div>
-                </div>
-                <div class="modal-footer">
-
-                    <button class="btn btn-primary" ng-click="updateInstantiationRequests()"
-                            ng-disabled="updateInstantiationRequestsForm.$invalid">Save
-                    </button>
-                    <button class="btn" data-ng-click="emptyInstantiationRequests()" data-dismiss="modal">
-                        Cancel
-                    </button>
-                </div>
-            </form>
+			<json-tree object="currentInstantiationRequests" start-expanded="true"></json-tree>
         </div>
     </div>
 </div>

@@ -10,6 +10,9 @@
       "jquery":"*",
       "angular-json-tree":"*",
       "angular-animate":"*"
+  },
+  "devDependencies": {
+    "angular-mocks": "*"
   }
 }
 

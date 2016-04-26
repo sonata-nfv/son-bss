@@ -17,7 +17,7 @@
       },
       {
         "moduleName": "InstantationRequests",
-        "moduleVariable": "instantationRequestss",
+        "moduleVariable": "instantationRequests",
         "module": "instantationRequests",
         "dir": "app/modules/InstantationRequests",
         "relativePath": "modules/InstantationRequests"

@@ -6,7 +6,6 @@ angular.module('NSD')
     .controller('NSDCtrl', ["$scope", "$rootScope", "NSDServices","ENV",function ($scope, $rootScope,NSDServices,ENV) {
 
         $scope.currentNSD= {};
-        
         // retrieve NSD to server
         $scope.retrieveNSDs = (function(){
             NSDServices.retrieveNSDs(ENV)
@@ -15,9 +14,10 @@ angular.module('NSD')
                     },function(error){
                         alert(error);
                     })
-            })();
+            });
 
-
+		$scope.retrieveNSDs();
+		
         $scope.openAddNSD=function(){
             $scope.currentNSD= {};
             $('#addNSD.modal').modal('show');
@@ -35,68 +35,27 @@ angular.module('NSD')
 
         $scope.openUpdateNSD=function(data){
 	    $scope.currentNSD=angular.copy(data);
-            $('#updateNSD.modal').modal('show');	    
-	    $($(".key.ng-binding.ng-scope")[0]).text("NSD#"+$scope.currentNSD.id);
+        $('#updateNSD.modal').modal('show');	    
+	    $($(".key.ng-binding.ng-scope")[0]).text("NSD#"+$scope.currentNSD.uuid);
 	    
 	    //$(".key.ng-binding.ng-scope").text("NSD")
         }
-
-        //update data to server
-        /**$scope.updateNSD = function(){
-            NSDServices.updateNSD($scope.currentNSD)
-            .then(function(result){
-                for(var key in $rootScope.nSDs){
-                    if(result.id==$rootScope.nSDs[key].id)
-                        $rootScope.nSDs[key] = result;
-                }
-                },function(error){
-                    alert(error);
-                })
-        }*/
-	
-	
-	
 
         $scope.openInstantiateNSD=function(data){
             $scope.currentNSD=angular.copy(data);
             $('#instantiateNSD.modal').modal('show');
         }
 
-        //delete data to server
+        
         $scope.instantiateNSD = function(){
-                NSDServices.instantiateNSD($scope.currentNSD.id,ENV)
+				console.log("$scope.currentNSD.uuid: "+$scope.currentNSD.uuid);
+                NSDServices.instantiateNSD($scope.currentNSD.uuid,ENV)
                 .then(function(result){
-                    for(var key in $rootScope.nSDs){
-                        if($scope.currentNSD.id==$rootScope.nSDs[key].id){
-                            $rootScope.nSDs.splice(key,1);
-                            break;
-                        }
-                }
+                    $('#instantiateNSD.modal').modal('hide');
                 },function(error){
                     alert(error);
                 })
         }
-	
-
-       /** $scope.openDeleteNSD=function(data){
-            $scope.currentNSD=angular.copy(data);
-            $('#instantiateNSD.modal').modal('show');
-        }*/
-
-        //delete data to server
-       /** $scope.deleteNSD = function(){
-                NSDServices.deleteNSD($scope.currentNSD.id)
-                .then(function(result){
-                    for(var key in $rootScope.nSDs){
-                        if($scope.currentNSD.id==$rootScope.nSDs[key].id){
-                            $rootScope.nSDs.splice(key,1);
-                            break;
-                        }
-                }
-                },function(error){
-                    alert(error);
-                })
-        }*/
 
         $scope.emptyNSD = function(){
             $scope.currentNSD={};
