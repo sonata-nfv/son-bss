@@ -155,11 +155,12 @@ module.exports = function(grunt) {
 		},
 		karma: {  
 		  unit: {
-			options: {
+			options: {				
 			  frameworks: ['jasmine'],
 			  singleRun: true,
 			  logLevel: 'DEBUG',
 			  browsers: ['PhantomJS'],
+			  reporters: ['junit'],			  
 			  files: [
 			  'app/vendor/jquery/dist/jquery.js',
 			  'app/vendor/bootstrap/dist/js/bootstrap.js',
@@ -170,20 +171,20 @@ module.exports = function(grunt) {
 			  'app/vendor/angular-formly-templates-bootstrap/dist/angular-formly-templates-bootstrap.js',
 			  'app/vendor/angular-json-tree/build/angular-json-tree.js',
 			  'app/vendor/angular-animate/angular-animate.js',
-//			  'app/vendor/angular/angular.js',
+			  //'app/vendor/angular/angular.js',
 			  'app/vendor/angular-mocks/angular-mocks.js',
-// 			  'app/vendor/**/*.js',
-
+			  //'app/vendor/**/*.js',
 			  //'app/modules/**/*.js',
 			  'app/config/*.js',
    			  'app/*.js',
   			  'app/modules/common/*.js',
 			  'app/modules/NSD/nSD/*.js',
-
-    			  //'app/modules/**/*.js',
-			  
+    	      //'app/modules/**/*.js',			  
 			  'app/test/NSD/nsdTest.js'
-			  ]
+			  ],
+			  junitReporter: {
+				outputFile: '../app/test/test-results/junit-results.xml'
+			  }
 			}
 		  }
 		}
@@ -194,7 +195,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-ng-constant');	
 	
 	grunt.registerTask('default', 'connect:dist');
-	grunt.registerTask('test', ['karma']);;  
+	grunt.registerTask('test', ['karma']);  
 	grunt.registerTask('serve', function (target) {	
 	
 	if (target === 'development') {    
