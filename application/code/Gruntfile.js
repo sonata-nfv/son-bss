@@ -183,7 +183,7 @@ module.exports = function(grunt) {
 			  'app/test/NSD/nsdTest.js'
 			  ],
 			  junitReporter: {
-				outputFile: '../app/test/test-results/junit-results.xml'
+				outputFile: '../app/test/junit-results.xml'
 			  }
 			}
 		  }
