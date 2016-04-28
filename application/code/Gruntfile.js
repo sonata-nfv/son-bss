@@ -79,10 +79,15 @@ module.exports = function(grunt) {
 
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
-		watch: {			
-			files: ['src/*'],
-			tasks: ['jshint']
-		},
+		/*watch: {
+			options: {
+				livereload: true
+			},      
+			protractor: {        
+				files: ['../E2E_tests/src/todo*.js'],
+				tasks: ['protractor:run']
+			}
+		},*/
 		ngconstant: {
 			// Options for all targets
 			options: {
@@ -98,8 +103,8 @@ module.exports = function(grunt) {
 		    },
 		    constants: {
 		      ENV: {
-			name: 'development',
-			apiEndpoint: 'http://sp.int.sonata-nfv.eu:1338/mock'
+				name: 'development',
+				apiEndpoint: 'http://sp.int.sonata-nfv.eu:1338/mock'			
 		      }
 		    }
 		  },
@@ -153,60 +158,45 @@ module.exports = function(grunt) {
 				base: 'app'
 			}
 		},
-		karma: {  
-		  unit: {
-			options: {				
-			  frameworks: ['jasmine'],
-			  singleRun: true,
-			  logLevel: 'DEBUG',
-			  browsers: ['PhantomJS'],
-			  reporters: ['junit'],			  
-			  files: [
-			  'app/vendor/jquery/dist/jquery.js',
-			  'app/vendor/bootstrap/dist/js/bootstrap.js',
-			  'app/vendor/api-check/dist/api-check.js',
-			  'app/vendor/angular/angular.js',
-			  'app/vendor/angular-ui-router/release/angular-ui-router.js',
-			  'app/vendor/angular-formly/dist/formly.js',
-			  'app/vendor/angular-formly-templates-bootstrap/dist/angular-formly-templates-bootstrap.js',
-			  'app/vendor/angular-json-tree/build/angular-json-tree.js',
-			  'app/vendor/angular-animate/angular-animate.js',
-			  //'app/vendor/angular/angular.js',
-			  'app/vendor/angular-mocks/angular-mocks.js',
-			  //'app/vendor/**/*.js',
-			  //'app/modules/**/*.js',
-			  'app/config/*.js',
-   			  'app/*.js',
-  			  'app/modules/common/*.js',
-			  'app/modules/NSD/nSD/*.js',
-    	      //'app/modules/**/*.js',			  
-			  'app/test/NSD/nsdTest.js'
-			  ],
-			  junitReporter: {
-				outputFile: '../app/test/junit-results.xml'
-			  }
-			}
-		  }
-		}
+		protractor: {
+		  options: {
+			configFile: "../E2E_tests/conf.js",		 
+			noColor: false,
+			keepAlive: true			
+			// Set to true if you would like to use the Protractor command line debugging tool
+			// debug: true,		 			
+			//args: { }
+		  },
+		  run: {}	    	
+		},
+		protractor_webdriver: {
+        start: {
+            options: {
+                path: 'node_modules/protractor/bin/',
+				keepAlive: true,
+                command: 'webdriver-manager start'
+            }
+        }
+    }
 	});
-    grunt.loadNpmTasks('grunt-karma');
+    
 	grunt.loadNpmTasks('grunt-contrib-connect');
 	grunt.loadNpmTasks('grunt-contrib-watch');
-	grunt.loadNpmTasks('grunt-ng-constant');	
+	grunt.loadNpmTasks('grunt-ng-constant');
+	grunt.loadNpmTasks('grunt-protractor-runner');
+	grunt.loadNpmTasks('grunt-protractor-webdriver');	
 	
 	grunt.registerTask('default', 'connect:dist');
-	grunt.registerTask('test', ['karma']);  
 	grunt.registerTask('serve', function (target) {	
 	
-	if (target === 'development') {    
-		return grunt.task.run(['ngconstant:development', 'connect:dist', 'connect:mock', 'watch']);
-	}
-  	if (target === 'integration') {    
-		return grunt.task.run(['ngconstant:integration','connect:int:keepalive']);
-	}
-  	if (target === 'production') {    
-		return grunt.task.run(['ngconstant:production','connect:prod:keepalive']);
-	}  
-});
-
+		if (target === 'development') {    
+			return grunt.task.run(['ngconstant:development', 'connect:dist', 'connect:mock', 'protractor_webdriver', 'protractor:run']);//, 'watch:protractor'
+		}
+		if (target === 'integration') {    
+			return grunt.task.run(['ngconstant:integration','connect:int:keepalive']);
+		}
+		if (target === 'production') {    
+			return grunt.task.run(['ngconstant:production','connect:prod:keepalive']);
+		}  
+	});
 }; 
