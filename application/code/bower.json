@@ -1,5 +1,5 @@
 {
-  "name": "SonataBSS",
+  "name": "sonatabss",
   "version": "0.0.0",
   "dependencies": {
       "angular":"*",

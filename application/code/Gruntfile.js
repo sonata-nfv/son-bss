@@ -74,20 +74,19 @@ var fmock =  function (req, res, next) {
 							}
 						};
 
-
 module.exports = function(grunt) {
 
 	grunt.initConfig({
 		pkg: grunt.file.readJSON('package.json'),
-		/*watch: {
+		watch: {
 			options: {
 				livereload: true
 			},      
 			protractor: {        
-				files: ['../E2E_tests/src/todo*.js'],
+				files: ['E2E_tests/todo*.js'],
 				tasks: ['protractor:run']
 			}
-		},*/
+		},
 		ngconstant: {
 			// Options for all targets
 			options: {
@@ -104,7 +103,8 @@ module.exports = function(grunt) {
 		    constants: {
 		      ENV: {
 				name: 'development',
-				apiEndpoint: 'http://sp.int.sonata-nfv.eu:1338/mock'			
+				//apiEndpoint: 'http://sp.int.sonata-nfv.eu:1338/mock'
+				apiEndpoint: 'http://localhost:1338/mock'
 		      }
 		    }
 		  },
@@ -157,41 +157,47 @@ module.exports = function(grunt) {
 				port: 1337,
 				base: 'app'
 			}
-		},
+		},		
 		protractor: {
 		  options: {
-			configFile: "../E2E_tests/conf.js",		 
+			configFile: "protractor.conf.js",		 
 			noColor: false,
-			keepAlive: true			
-			// Set to true if you would like to use the Protractor command line debugging tool
-			// debug: true,		 			
-			//args: { }
-		  },
-		  run: {}	    	
+			keepAlive: true
+		  },		  
+		  run: {},
+		  auto: {
+			keepAlive: true,
+			options: {
+				args: {
+					seleniumPort: 4444
+				}
+			}
+		  }
 		},
 		protractor_webdriver: {
-        start: {
-            options: {
-                path: 'node_modules/protractor/bin/',
-				keepAlive: true,
-                command: 'webdriver-manager start'
-            }
-        }
-    }
+			start: {
+				options: {
+					path: 'node_modules/protractor/bin/',
+					keepAlive: true,
+					command: 'webdriver-manager start'
+				}
+			}
+		}
 	});
     
-	grunt.loadNpmTasks('grunt-contrib-connect');
-	grunt.loadNpmTasks('grunt-contrib-watch');
-	grunt.loadNpmTasks('grunt-ng-constant');
-	grunt.loadNpmTasks('grunt-protractor-runner');
-	grunt.loadNpmTasks('grunt-protractor-webdriver');	
+	//grunt.loadNpmTasks('grunt-contrib-connect');
+	//grunt.loadNpmTasks('grunt-contrib-watch');
+	//grunt.loadNpmTasks('grunt-ng-constant');
+	//grunt.loadNpmTasks('grunt-protractor-runner');
+	//grunt.loadNpmTasks('grunt-protractor-webdriver');
+	require('matchdep').filterDev('grunt-*').forEach(grunt.loadNpmTasks);	
 	
 	grunt.registerTask('default', 'connect:dist');
 	grunt.registerTask('serve', function (target) {	
 	
 		if (target === 'development') {    
-			return grunt.task.run(['ngconstant:development', 'connect:dist', 'connect:mock', 'protractor_webdriver', 'protractor:run']);//, 'watch:protractor'
-		}
+			return grunt.task.run(['ngconstant:development', 'connect:dist', 'connect:mock', 'protractor_webdriver', 'protractor:run', 'watch:protractor']);
+		}		
 		if (target === 'integration') {    
 			return grunt.task.run(['ngconstant:integration','connect:int:keepalive']);
 		}
