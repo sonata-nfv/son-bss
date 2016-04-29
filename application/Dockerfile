@@ -25,4 +25,5 @@ RUN cp -r /usr/local/yeoman/bss/code/* /usr/local/yeoman/SonataBSS/
 RUN bower install
 RUN sudo npm install
 RUN sudo chmod -R 775 /usr/local/yeoman/SonataBSS
+RUN sudo node /usr/local/yeoman/SonataBSS/node_modules/protractor/bin/webdriver-manager update
 EXPOSE 1337

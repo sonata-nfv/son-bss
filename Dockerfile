@@ -9,6 +9,10 @@ RUN apt-get -yq update && \
 	
 RUN npm install -g --silent yo@1.7.0 bower@1.7.6 grunt@1.0.1 grunt-ng-constant@2.0.1
 
+#E2E testing
+#RUN npm install -g protractor
+#RUN webdriver-manager update
+
 # Add a yeoman user because grunt doesn't like being root
 RUN adduser --disabled-password --gecos "" yeoman && \
   echo "yeoman ALL=(ALL) NOPASSWD:ALL" >> /etc/sudoers
