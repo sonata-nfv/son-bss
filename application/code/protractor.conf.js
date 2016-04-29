@@ -8,6 +8,7 @@ var reporter = new HtmlScreenshotReporter({
 
 exports.config = {
   seleniumAddress: 'http://localhost:4444/wd/hub',
+  seleniumServerJar: './node_modules/protractor/selenium/selenium-server-standalone-2.52.0.jar',
   specs: ['E2E_tests/todo-spec.js'],
   
   capabilities: {
