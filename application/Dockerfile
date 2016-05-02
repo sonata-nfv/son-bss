@@ -10,7 +10,6 @@ ADD configure_app.sh /usr/local/yeoman/bss/configure_app.sh
 ADD code /usr/local/yeoman/bss/code
 RUN sudo chmod +x /usr/local/yeoman/bss/configure_app.sh
 WORKDIR /usr/local/yeoman/bss/code
-#RUN sudo npm install
 
 
  
@@ -22,8 +21,8 @@ RUN /usr/local/yeoman/bss/configure_app.sh
 RUN rm -f /usr/local/yeoman/SonataBSS/app/modules/NSD/nSD/views/addNSD.html
 RUN rm -f /usr/local/yeoman/SonataBSS/app/modules/NSD/nSD/views/deleteNSD.html
 RUN cp -r /usr/local/yeoman/bss/code/* /usr/local/yeoman/SonataBSS/
-RUN bower install
 RUN sudo npm install
+RUN bower install
 RUN sudo chmod -R 775 /usr/local/yeoman/SonataBSS
 RUN sudo node /usr/local/yeoman/SonataBSS/node_modules/protractor/bin/webdriver-manager update
 EXPOSE 1337
