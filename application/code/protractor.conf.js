@@ -15,7 +15,7 @@ exports.config = {
   'browserName': 'phantomjs',
     version: '',
     platform: 'ANY',
-	'phantomjs.binary.path': './node_modules/phantomjs/lib/phantom/bin/phantomjs.exe',
+	'phantomjs.binary.path': './node_modules/phantomjs-prebuilt/bin/phantomjs',
 	'phantomjs.ghostdriver.cli.args': ['--loglevel=DEBUG']
   },
      
