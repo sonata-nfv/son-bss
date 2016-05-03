@@ -26,4 +26,4 @@ RUN sudo npm install
 RUN mv /usr/local/yeoman/SonataBSS/bower_components /usr/local/yeoman/SonataBSS/app/vendor
 RUN sudo chmod -R 775 /usr/local/yeoman/SonataBSS
 RUN sudo node /usr/local/yeoman/SonataBSS/node_modules/protractor/bin/webdriver-manager update
-EXPOSE 1337
+EXPOSE 1337 1338
