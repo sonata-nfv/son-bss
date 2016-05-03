@@ -17,9 +17,9 @@ WORKDIR /usr/local/yeoman/bss/code
 
 RUN mkdir /usr/local/yeoman/SonataBSS
 WORKDIR /usr/local/yeoman/SonataBSS
-RUN /usr/local/yeoman/bss/configure_app.sh
-RUN rm -f /usr/local/yeoman/SonataBSS/app/modules/NSD/nSD/views/addNSD.html
-RUN rm -f /usr/local/yeoman/SonataBSS/app/modules/NSD/nSD/views/deleteNSD.html
+#RUN /usr/local/yeoman/bss/configure_app.sh
+#RUN rm -f /usr/local/yeoman/SonataBSS/app/modules/NSD/nSD/views/addNSD.html
+#RUN rm -f /usr/local/yeoman/SonataBSS/app/modules/NSD/nSD/views/deleteNSD.html
 RUN cp -r /usr/local/yeoman/bss/code/* /usr/local/yeoman/SonataBSS/
 RUN sudo npm install
 RUN bower install
