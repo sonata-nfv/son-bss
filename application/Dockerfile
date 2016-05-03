@@ -21,8 +21,8 @@ WORKDIR /usr/local/yeoman/SonataBSS
 #RUN rm -f /usr/local/yeoman/SonataBSS/app/modules/NSD/nSD/views/addNSD.html
 #RUN rm -f /usr/local/yeoman/SonataBSS/app/modules/NSD/nSD/views/deleteNSD.html
 RUN cp -r /usr/local/yeoman/bss/code/* /usr/local/yeoman/SonataBSS/
-RUN sudo npm install
 RUN bower install
+RUN sudo npm install
 RUN sudo chmod -R 775 /usr/local/yeoman/SonataBSS
 RUN sudo node /usr/local/yeoman/SonataBSS/node_modules/protractor/bin/webdriver-manager update
 EXPOSE 1337
