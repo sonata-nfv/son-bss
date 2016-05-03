@@ -196,10 +196,13 @@ module.exports = function(grunt) {
 	grunt.registerTask('serve', function (target) {	
 	
 		if (target === 'development') {    
-			return grunt.task.run(['ngconstant:development', 'connect:dist', 'connect:mock', 'protractor_webdriver', 'protractor:run', 'watch:protractor']);
+			return grunt.task.run(['ngconstant:development', 'connect:dist', 'connect:mock', 'watch:protractor']);
 		}		
+		if (target === 'development_tests') {    
+			return grunt.task.run(['ngconstant:development', 'connect:dist', 'connect:mock', 'protractor_webdriver', 'protractor:run', 'watch:protractor']);
+		}
 		if (target === 'integration') {    
-			return grunt.task.run(['ngconstant:integration','connect:int:keepalive']);
+			return grunt.task.run(['ngconstant:integration','connect:int', 'protractor_webdriver', 'protractor:run', 'watch:protractor']);
 		}
 		if (target === 'production') {    
 			return grunt.task.run(['ngconstant:production','connect:prod:keepalive']);
