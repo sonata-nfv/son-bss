@@ -9,8 +9,8 @@
     
 
 
-angular.module("SonataBSS", ["angular-json-tree","ui.router","formly","formlyBootstrap","ngAnimate"
-    
+angular.module("SonataBSS", ["angular-json-tree","ui.router","formly","formlyBootstrap","ngAnimate","angularUtils.directives.dirPagination"
+
         ,"NSD"
 
         ,"InstantiationRequests"

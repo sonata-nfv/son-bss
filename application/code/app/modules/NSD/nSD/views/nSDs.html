@@ -36,8 +36,7 @@
                 </tr>
                 </thead>
                 <tbody role="alert" aria-live="polite" aria-relevant="all" right-menu id="rightContextMenu">
-                <tr ng-repeat="nSD in nSDs | searchObject:nSDsSearch | orderObjectBy:sort:reverse"
-                    ng-animate="''" ng-mouseover="showPopover(nSD)" ng-mouseleave="hidePopover()">
+                <tr dir-paginate="nSD in nSDs | searchObject:nSDsSearch | orderObjectBy:sort:reverse | itemsPerPage:10" ng-animate="''" ng-mouseover="showPopover(nSD)" ng-mouseleave="hidePopover()">		
                     
 		    <td>{{ nSD['name'] }}</td>                    
                     <td>{{ nSD['description'] }}</td>
@@ -61,8 +60,7 @@
             </table>
 	    
 	    
-	<div class="descriptionpopup" ng-show="popoverIsVisible" }" style="clear:both;"><b><u>Description:</b></u> <i>{{hoveredNSD['description']}}</i></div>    
-
+	<div class="descriptionpopup" ng-show="popoverIsVisible" }" style="clear:both;"><b><u>Description:</b></u> <i>{{hoveredNSD['description']}}</i></div>            
 
 
         </div>
@@ -70,11 +68,18 @@
     
     <ng-include src="'modules/NSD/nSD/views/updateNSD.html'"></ng-include>
     <ng-include src="'modules/NSD/nSD/views/instantiateNSD.html'"></ng-include>
-	<ng-include src="'modules/NSD/nSD/views/instantiateRequest.html'"></ng-include>
+    <ng-include src="'modules/NSD/nSD/views/instantiateRequest.html'"></ng-include>
 
     <script>
         $(function () {
             $('[data-toggle="tooltip"]').tooltip()
         })
     </script>
+    
+    <dir-pagination-controls
+       max-size="5"
+       direction-links="true"
+       boundary-links="true" >
+    </dir-pagination-controls>
+    
 </div>

@@ -36,8 +36,8 @@
                 </tr>
                 </thead>
                 <tbody role="alert" aria-live="polite" aria-relevant="all" right-menu id="rightContextMenu">
-                <tr ng-repeat="InstantiationRequests in InstantiationRequests | searchObject:InstantiationRequestsSearch | orderObjectBy:sort:reverse"
-                    ng-animate="''">
+                <!--tr ng-repeat="InstantiationRequests in InstantiationRequests | searchObject:InstantiationRequestsSearch | orderObjectBy:sort:reverse" ng-animate="''"-->		
+		 <tr dir-paginate="InstantiationRequests in InstantiationRequests | searchObject:InstantiationRequestsSearch | orderObjectBy:sort:reverse | itemsPerPage:10" ng-animate="''">
                     
                     <td>{{ InstantiationRequests['requestId'] }}</td>
                     <td>{{ InstantiationRequests['descriptorId'] }}</td>
@@ -56,7 +56,13 @@
 
         </div>
     </div>
-
+    
+    <dir-pagination-controls
+       max-size="5"
+       direction-links="true"
+       boundary-links="true" >
+    </dir-pagination-controls>
+    
     <ng-include src="'modules/InstantiationRequests/instantiationRequests/views/addInstantiationRequests.html'"></ng-include>
     <ng-include src="'modules/InstantiationRequests/instantiationRequests/views/updateInstantiationRequests.html'"></ng-include>
     <ng-include src="'modules/InstantiationRequests/instantiationRequests/views/deleteInstantiationRequests.html'"></ng-include>
