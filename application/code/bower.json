@@ -8,7 +8,6 @@
       "angular-formly-templates-bootstrap":"*",
       "bootstrap":"*",
       "jquery":"*",
-      "angular-json-tree":"*",
       "angular-animate":"*"
   },
   "devDependencies": {
